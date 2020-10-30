@@ -14,7 +14,7 @@ function App() {
       <TopNav></TopNav>
 
       <Switch>
-        <Route path="/catagories">
+        <Route path="/all-post">
           <Catagories posts={posts} />
         </Route>
         <Route path="/">

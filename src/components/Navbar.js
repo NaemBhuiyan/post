@@ -11,7 +11,7 @@ import {
   NavLink,
 } from "reactstrap";
 
-const TopNav = (props) => {
+const TopNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -19,18 +19,18 @@ const TopNav = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">weDevs</NavbarBrand>
+        <NavbarBrand href="/">Devs</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink tag={Link} to="/">
-                Post
+                Create Post
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/catagories">
-                Catagories
+              <NavLink tag={Link} to="/all-post">
+                All Post
               </NavLink>
             </NavItem>
           </Nav>
