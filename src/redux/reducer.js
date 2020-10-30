@@ -7,28 +7,27 @@ const initialState = {
         id: uuid(),
         title: "Good morning",
         content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-        categories: ["Simple"],
+        categories: [{ value: "Simple", label: "Simple" }],
       },
       {
         id: uuid(),
         title: "Good after Noon",
         content:
           "Deserunt quasi voluptates perspiciatis ad, aspernatur odio nisi natus. ",
-        categories: ["Featured", "hek"],
+        categories: [{ value: "featured", label: "Featured" }],
       },
       {
         id: uuid(),
         title: "Good night",
         content:
           "Reprehenderit esse facere fuga. Quos officia sapiente voluptatibus unde facilis distinctio amet non!",
-        categories: ["Fashion"],
+        categories: [{ value: "Fashion", label: "Fashion" }],
       },
     ],
   },
   reducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_POST:
-        console.log(action);
         return {
           posts: [
             ...state.posts,
@@ -43,17 +42,19 @@ const initialState = {
 
       case DELETE_POST:
         return {
-          posts: [...state.posts.filter((todo) => todo.id !== action.id)],
+          posts: [...state.posts.filter((post) => post.id !== action.id)],
         };
       case EDIT_POST:
-        console.log(action.id, action.text);
+        console.log(action);
         return {
           posts: [
-            ...state.posts.map((todo) => {
-              if (todo.id === action.id) {
-                todo.text = action.text;
+            ...state.posts.map((post) => {
+              if (post.id === action.id) {
+                post.title = action.editedTitle;
+                post.content = action.editedContent;
+                post.categories = [...action.editedCatagories];
               }
-              return todo;
+              return post;
             }),
           ],
         };

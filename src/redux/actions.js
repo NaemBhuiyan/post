@@ -9,11 +9,10 @@ export const addPost = (title, content, categories) => {
   };
 };
 
-export const editPost = (id, text) => {
+export const editPost = (props) => {
   return {
     type: EDIT_POST,
-    id,
-    text,
+    ...props,
   };
 };
 export const deletePost = (id) => {
