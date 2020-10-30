@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreatableSelect from "react-select/creatable";
 import { addPost } from "../redux";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import EditFormModal from "./EditFormModal";
 const Home = () => {
   const posts = useSelector((state) => state.posts);
   const setAddPost = useDispatch();
@@ -13,13 +14,20 @@ const Home = () => {
     { value: "strawberry", label: "Strawberry" },
     { value: "vanilla", label: "Vanilla" },
   ]);
+  const [modal, setModal] = useState(false);
 
+  const selectRef = useRef();
+
+  useEffect(() => {
+    console.log(selectRef.current);
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ title, content, catagories });
     setAddPost(addPost(title, content, catagories));
     setTitle("");
     setContent("");
+    selectRef.current.clearValue();
   };
 
   return (
@@ -53,11 +61,15 @@ const Home = () => {
               <Label>Categories</Label>
               <CreatableSelect
                 isClearable
+                onCreateOption={(inputValue) => {
+                  console.log(inputValue);
+                  setModal(true);
+                }}
+                ref={selectRef}
                 isMulti
                 options={catagories}
                 onChange={(newValue) => {
-                  let newCatagories = newValue?.map((item) => item.value);
-                  setCatagories(newCatagories);
+                  console.log(newValue);
                 }}
               />
             </FormGroup>
@@ -72,6 +84,7 @@ const Home = () => {
           </Form>
         </Col>
       </Row>
+      <EditFormModal modal={modal} setModal={setModal}></EditFormModal>
     </>
   );
 };
