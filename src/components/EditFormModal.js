@@ -15,18 +15,17 @@ import {
 } from "reactstrap";
 
 const EditFormModal = ({ modal, setModal, targetPost }) => {
-  let { id, title, content, categories } = modal && targetPost;
-  console.log({ title, content, categories });
   const setEditPost = useDispatch();
-  const [editedTitle, setEdiTedTitle] = useState("");
-  const [editedContent, setEditedContent] = useState("");
-  const [editedCatagories, setEditedCatagories] = useState([]);
-  const [newCatagoriesValue, setNewCatagoriesValue] = useState([]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [categories, setCatagories] = useState([]);
   useEffect(() => {
-    setEdiTedTitle(title);
-    setEditedContent(content);
-    setEditedCatagories(categories);
-  }, [modal]);
+    if (!modal) {
+      setTitle(targetPost?.title);
+      setContent(targetPost?.content);
+      setCatagories(targetPost?.categories);
+    }
+  }, []);
   const selectRef = useRef();
   const toggle = () => setModal(!modal);
   const options = [
@@ -37,7 +36,7 @@ const EditFormModal = ({ modal, setModal, targetPost }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEditPost(editPost({ id, editedTitle, editedContent, editedCatagories }));
+    setEditPost(editPost({ id: targetPost.id, title, content, categories }));
     setModal(false);
   };
   return (
@@ -51,9 +50,9 @@ const EditFormModal = ({ modal, setModal, targetPost }) => {
               <Input
                 name="title"
                 id="title"
-                defaultValue={title}
+                value={title}
                 placeholder="Enter Title"
-                onChange={({ target }) => setEdiTedTitle(target.value)}
+                onChange={({ target }) => setTitle(target.value)}
               />
             </FormGroup>
             <FormGroup>
@@ -62,9 +61,9 @@ const EditFormModal = ({ modal, setModal, targetPost }) => {
                 type="textarea"
                 name="content"
                 id="content"
-                defaultValue={content}
+                value={content}
                 placeholder="Content"
-                onChange={({ target }) => setEditedContent(target.value)}
+                onChange={({ target }) => setContent(target.value)}
               />
             </FormGroup>
             <FormGroup>
@@ -75,12 +74,12 @@ const EditFormModal = ({ modal, setModal, targetPost }) => {
                 //   setModal(true);
                 // }}
                 ref={selectRef}
-                defaultValue={categories}
+                value={categories}
                 isMulti
                 placeholder="Type to create new catagories"
                 onChange={(values) => {
-                  setEditedCatagories(values);
-                  setNewCatagoriesValue(values);
+                  setCatagories(values);
+                  // setNewCatagoriesValue(values);
                 }}
                 // onInputChange={(ev) => {
                 //   console.log(ev);

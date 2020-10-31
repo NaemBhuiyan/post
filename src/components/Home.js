@@ -1,25 +1,21 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import EditFormModal from "./EditFormModal";
+import { useDispatch } from "react-redux";
+import { addPost } from "../redux";
 import PostForm from "./PostForm";
 const Home = () => {
-  // const posts = useSelector((state) => state.posts);
-
+  const setAddPost = useDispatch();
+  const handleDispatch = (title, content, catagories) => {
+    setAddPost(addPost(title, content, catagories));
+  };
   return (
     <>
       <h2 className="text-center mt-5">Add Post</h2>
       <Row className="justify-content-center">
         <Col xs="6">
-          <PostForm inputProp="value"></PostForm>
+          <PostForm handleDispatch={handleDispatch}></PostForm>
         </Col>
       </Row>
-      {/* <EditFormModal
-        modal={modal}
-        setModal={setModal}
-        setNewCatagoriesValue={setNewCatagoriesValue}
-        newCatagoriesValue={newCatagoriesValue}
-      /> */}
     </>
   );
 };

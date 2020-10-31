@@ -50,9 +50,9 @@ const initialState = {
           posts: [
             ...state.posts.map((post) => {
               if (post.id === action.id) {
-                post.title = action.editedTitle;
-                post.content = action.editedContent;
-                post.categories = [...action.editedCatagories];
+                post.title = action.title;
+                post.content = action.content;
+                post.categories = [...action.categories];
               }
               return post;
             }),
