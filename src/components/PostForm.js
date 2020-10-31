@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import CreateNewCategoryModal from "./CreateNewCategoryModal";
@@ -17,12 +17,19 @@ const PostForm = ({ handleDispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleDispatch(title, content, catagories);
+    handleDispatch(title, content, newCatagoriesValue);
     setTitle("");
     setContent("");
     setNewCatagoriesValue([]);
   };
 
+  useEffect(() => {
+    newCatagoriesValue &&
+      setMultiSelectOptions([
+        ...new Set([...multiSelectOptions, ...newCatagoriesValue]),
+      ]);
+  }, [newCatagoriesModal]);
+  console.log({ multiSelectOptions, newCatagoriesValue });
   return (
     <>
       <Form>
@@ -52,12 +59,6 @@ const PostForm = ({ handleDispatch }) => {
           <CreatableSelect
             isClearable
             onCreateOption={(inputValue) => {
-              console.log(inputValue);
-              setMultiSelectOptions([
-                ...multiSelectOptions,
-                { value: inputValue, label: inputValue },
-              ]);
-
               setNewCatagoriesModal(true);
             }}
             value={newCatagoriesValue}
@@ -65,7 +66,6 @@ const PostForm = ({ handleDispatch }) => {
             placeholder="Type to create new catagories"
             options={multiSelectOptions}
             onChange={(values) => {
-              setCatagories(values);
               setNewCatagoriesValue(values);
             }}
           />

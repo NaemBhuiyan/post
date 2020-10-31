@@ -47,13 +47,26 @@ const CreateNewCategoryModal = ({
         <Button
           color="primary"
           onClick={() => {
-            setNewCatagoriesValue([
-              ...newCatagoriesValue,
-              {
-                value: newValue,
-                label: newLabel,
-              },
-            ]);
+            if (newCatagoriesValue) {
+              setNewCatagoriesValue([
+                ...newCatagoriesValue,
+                {
+                  value: newValue,
+                  label: newLabel,
+                },
+              ]);
+            } else {
+              setNewCatagoriesValue([
+                {
+                  value: newValue,
+                  label: newLabel,
+                },
+              ]);
+            }
+
+            setNewLabel("");
+            setNewValue("");
+
             toggle();
           }}>
           Save
