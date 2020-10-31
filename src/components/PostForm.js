@@ -26,11 +26,8 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
 
   useEffect(() => {
     newCatagoriesValue &&
-      setMultiSelectOptions([
-        ...new Set([...multiSelectOptions, ...newCatagoriesValue]),
-      ]);
+      setMultiSelectOptions([...multiSelectOptions, ...newCatagoriesValue]);
   }, [newCatagoriesModal]);
-  console.log(multiSelectOptions);
   return (
     <>
       <Form>
@@ -67,7 +64,7 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
             value={newCatagoriesValue}
             isMulti
             placeholder="Type to create new catagories"
-            options={multiSelectOptions}
+            options={[...new Set(multiSelectOptions)]}
             onChange={(values) => {
               setNewCatagoriesValue(values);
             }}
