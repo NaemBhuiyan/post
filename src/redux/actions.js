@@ -1,6 +1,6 @@
 import { ADD_POST, EDIT_POST, DELETE_POST } from "./actionTypes";
 
-export const addPost = (title, content, categories) => {
+export const addPost = (id, title, content, categories) => {
   return {
     type: ADD_POST,
     title,
@@ -10,7 +10,6 @@ export const addPost = (title, content, categories) => {
 };
 
 export const editPost = (props) => {
-  console.log(props);
   return {
     type: EDIT_POST,
     ...props,

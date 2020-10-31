@@ -18,7 +18,7 @@ const PostForm = ({ handleDispatch, targetPost }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleDispatch(targetPost.id, title, content, newCatagoriesValue);
+    handleDispatch(targetPost?.id, title, content, newCatagoriesValue);
     setTitle("");
     setContent("");
     setNewCatagoriesValue([]);

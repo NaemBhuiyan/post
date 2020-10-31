@@ -5,8 +5,8 @@ import { addPost } from "../redux";
 import PostForm from "./PostForm";
 const Home = () => {
   const setAddPost = useDispatch();
-  const handleDispatch = (title, content, catagories) => {
-    setAddPost(addPost(title, content, catagories));
+  const handleDispatch = (id, title, content, categories) => {
+    setAddPost(addPost(id, title, content, categories));
   };
   return (
     <>
