@@ -20,6 +20,29 @@ const CreateNewCategoryModal = ({
   const [newLabel, setNewLabel] = useState("");
   const [newValue, setNewValue] = useState("");
 
+  const handleSaveClick = () => {
+    if (Array.isArray(newCatagoriesValue)) {
+      setNewCatagoriesValue([
+        ...newCatagoriesValue,
+        {
+          value: newValue,
+          label: newLabel,
+        },
+      ]);
+    } else {
+      setNewCatagoriesValue([
+        {
+          value: newValue,
+          label: newLabel,
+        },
+      ]);
+    }
+
+    setNewLabel("");
+    setNewValue("");
+
+    toggle();
+  };
   return (
     <Modal isOpen={newCatagoriesModal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Create New Category</ModalHeader>
@@ -44,31 +67,7 @@ const CreateNewCategoryModal = ({
         </FormGroup>
       </ModalBody>
       <ModalFooter>
-        <Button
-          color="primary"
-          onClick={() => {
-            if (Array.isArray(newCatagoriesValue)) {
-              setNewCatagoriesValue([
-                ...newCatagoriesValue,
-                {
-                  value: newValue,
-                  label: newLabel,
-                },
-              ]);
-            } else {
-              setNewCatagoriesValue([
-                {
-                  value: newValue,
-                  label: newLabel,
-                },
-              ]);
-            }
-
-            setNewLabel("");
-            setNewValue("");
-
-            toggle();
-          }}>
+        <Button color="primary" onClick={handleSaveClick}>
           Save
         </Button>{" "}
         <Button color="secondary" onClick={toggle}>
