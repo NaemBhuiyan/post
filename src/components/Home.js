@@ -6,14 +6,14 @@ import PostForm from "./PostForm";
 const Home = () => {
   const setAddPost = useDispatch();
   const handleDispatch = (id, title, content, categories) => {
-    setAddPost(addPost(id, title, content, categories));
+    setAddPost(addPost(title, content, categories));
   };
   return (
     <>
       <h2 className="text-center mt-5">Add Post</h2>
       <Row className="justify-content-center">
         <Col xs="6">
-          <PostForm handleDispatch={handleDispatch}></PostForm>
+          <PostForm handleDispatch={handleDispatch} btnText="Post"></PostForm>
         </Col>
       </Row>
     </>

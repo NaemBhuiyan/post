@@ -13,12 +13,15 @@ const EditFormModal = ({ editModal, setEditModal, targetPost }) => {
   const toggle = () => setEditModal(!editModal);
   return (
     <div>
-      <Modal isOpen={editModal} toggle={toggle}>
+      <Modal isOpen={editModal} toggle={toggle} size="lg">
         <ModalHeader toggle={toggle}>Edit Post</ModalHeader>
         <ModalBody>
           <PostForm
             handleDispatch={handleDispatch}
-            targetPost={targetPost}></PostForm>
+            targetPost={targetPost}
+            btnText="Save"
+            toggle={toggle}
+          />
         </ModalBody>
       </Modal>
     </div>

@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import CreateNewCategoryModal from "./CreateNewCategoryModal";
 
-const PostForm = ({ handleDispatch, targetPost }) => {
+const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
   const [title, setTitle] = useState(targetPost?.title || "");
   const [content, setContent] = useState(targetPost?.content || "");
   const [newCatagoriesValue, setNewCatagoriesValue] = useState(
@@ -30,7 +30,7 @@ const PostForm = ({ handleDispatch, targetPost }) => {
         ...new Set([...multiSelectOptions, ...newCatagoriesValue]),
       ]);
   }, [newCatagoriesModal]);
-
+  console.log(multiSelectOptions);
   return (
     <>
       <Form>
@@ -74,12 +74,14 @@ const PostForm = ({ handleDispatch, targetPost }) => {
           />
         </FormGroup>
         <Button
-          size="lg"
           color="primary"
           className="float-right mt-4"
           type="submit"
-          onClick={handleSubmit}>
-          Post
+          onClick={(e) => {
+            handleSubmit(e);
+            toggle && toggle();
+          }}>
+          {btnText}
         </Button>
       </Form>
       <CreateNewCategoryModal

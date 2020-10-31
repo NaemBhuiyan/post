@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import { deletePost } from "../redux";
 import EditFormModal from "./EditFormModal";
 
 const Catagories = ({ posts }) => {
-  // const posts = useSelector((state) => state.posts);
   const setDeletePost = useDispatch();
   const [modal, setModal] = useState(false);
   const [postId, setPostId] = useState(false);
@@ -58,7 +57,7 @@ const Catagories = ({ posts }) => {
               );
             })
           ) : (
-            <h4>No new post here</h4>
+            <h4 className="text-center">No new post here, Add new Post</h4>
           )}
         </Col>
       </Row>
