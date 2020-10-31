@@ -10,6 +10,7 @@ export const addPost = (title, content, categories) => {
 };
 
 export const editPost = (props) => {
+  console.log(props);
   return {
     type: EDIT_POST,
     ...props,

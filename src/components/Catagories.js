@@ -63,8 +63,8 @@ const Catagories = ({ posts }) => {
         </Col>
       </Row>
       <EditFormModal
-        modal={modal}
-        setModal={setModal}
+        editModal={modal}
+        setEditModal={setModal}
         targetPost={targetPost}
       />
     </>

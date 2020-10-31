@@ -3,11 +3,12 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import CreateNewCategoryModal from "./CreateNewCategoryModal";
 
-const PostForm = ({ handleDispatch }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [catagories, setCatagories] = useState([]);
-  const [newCatagoriesValue, setNewCatagoriesValue] = useState([]);
+const PostForm = ({ handleDispatch, targetPost }) => {
+  const [title, setTitle] = useState(targetPost?.title || "");
+  const [content, setContent] = useState(targetPost?.content || "");
+  const [newCatagoriesValue, setNewCatagoriesValue] = useState(
+    targetPost?.categories || []
+  );
   const [newCatagoriesModal, setNewCatagoriesModal] = useState(false);
   const [multiSelectOptions, setMultiSelectOptions] = useState([
     { value: "chocolate", label: "Chocolate" },
@@ -17,7 +18,7 @@ const PostForm = ({ handleDispatch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleDispatch(title, content, newCatagoriesValue);
+    handleDispatch(targetPost.id, title, content, newCatagoriesValue);
     setTitle("");
     setContent("");
     setNewCatagoriesValue([]);
@@ -29,7 +30,7 @@ const PostForm = ({ handleDispatch }) => {
         ...new Set([...multiSelectOptions, ...newCatagoriesValue]),
       ]);
   }, [newCatagoriesModal]);
-  console.log({ multiSelectOptions, newCatagoriesValue });
+
   return (
     <>
       <Form>
@@ -40,7 +41,9 @@ const PostForm = ({ handleDispatch }) => {
             id="title"
             value={title}
             placeholder="Enter Title"
-            onChange={({ target }) => setTitle(target.value)}
+            onChange={({ target }) => {
+              setTitle(target.value);
+            }}
           />
         </FormGroup>
         <FormGroup>
@@ -58,7 +61,7 @@ const PostForm = ({ handleDispatch }) => {
           <Label>Categories</Label>
           <CreatableSelect
             isClearable
-            onCreateOption={(inputValue) => {
+            onCreateOption={() => {
               setNewCatagoriesModal(true);
             }}
             value={newCatagoriesValue}
