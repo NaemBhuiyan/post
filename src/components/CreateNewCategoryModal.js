@@ -47,7 +47,7 @@ const CreateNewCategoryModal = ({
         <Button
           color="primary"
           onClick={() => {
-            if (newCatagoriesValue) {
+            if (Array.isArray(newCatagoriesValue)) {
               setNewCatagoriesValue([
                 ...newCatagoriesValue,
                 {

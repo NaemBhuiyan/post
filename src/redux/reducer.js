@@ -45,14 +45,15 @@ const initialState = {
           posts: [...state.posts.filter((post) => post.id !== action.id)],
         };
       case EDIT_POST:
-        console.log(action);
         return {
           posts: [
             ...state.posts.map((post) => {
               if (post.id === action.id) {
                 post.title = action.title;
                 post.content = action.content;
-                post.categories = [...action.categories];
+                post.categories = Array.isArray(action.categories)
+                  ? [...action.categories]
+                  : [];
               }
               return post;
             }),
