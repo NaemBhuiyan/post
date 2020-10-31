@@ -26,12 +26,11 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
 
   useEffect(() => {
     if (Array.isArray(newCatagoriesValue)) {
-      const x = multiSelectOptions.every((item) => {
-        console.log(newCatagoriesValue.some((v) => v.value !== item.value));
-        return newCatagoriesValue.some((v) => v.value !== item.value);
-      });
-      console.log(x);
-      x && setMultiSelectOptions((prev) => [...prev, ...newCatagoriesValue]);
+      const isDuplicate = multiSelectOptions.every((item) =>
+        newCatagoriesValue.some((v) => v.value !== item.value)
+      );
+      isDuplicate &&
+        setMultiSelectOptions((prev) => [...prev, ...newCatagoriesValue]);
     }
   }, [newCatagoriesModal, newCatagoriesValue]);
   return (

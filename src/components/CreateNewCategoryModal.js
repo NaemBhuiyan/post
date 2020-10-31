@@ -51,6 +51,7 @@ const CreateNewCategoryModal = ({
           <Label>Label</Label>
           <Input
             name="label"
+            placeholder="Give category Label"
             value={newLabel}
             onChange={({ target }) => {
               setNewLabel(target.value);
@@ -59,6 +60,7 @@ const CreateNewCategoryModal = ({
         <FormGroup>
           <Label>Value</Label>
           <Input
+            placeholder="Give category value"
             name="value"
             value={newValue}
             onChange={({ target }) => {
