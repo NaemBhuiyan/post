@@ -1,1 +1,1 @@
-export { addPost, editPost, deletePost } from "./actions";
+export { addPost, editPost, deletePost, addCatagories } from "./actions";

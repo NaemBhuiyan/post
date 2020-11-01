@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { addCatagories } from "../redux";
+
 const CreateCategory = () => {
+  const catagories = useSelector((state) => {
+    console.log(state.catagoriesReducer.catagories);
+    return state.catagoriesReducer.catagories;
+  });
+  const setCatagories = useDispatch();
   const [newLabel, setNewLabel] = useState("");
   const [newValue, setNewValue] = useState("");
 
+  // console.log(catagories);
   // const handleSaveClick = () => {
   //   if (Array.isArray(newCatagoriesValue)) {
   //     setNewCatagoriesValue([
@@ -55,7 +64,15 @@ const CreateCategory = () => {
                 }}></Input>
             </FormGroup>
             {/* onClick={handleSaveClick} */}
-            <Button color="primary">Save</Button>
+            <Button
+              color="primary"
+              onClick={() => {
+                setCatagories(
+                  addCatagories({ value: newValue, label: newLabel })
+                );
+              }}>
+              Save
+            </Button>
           </Form>
         </Col>
       </Row>

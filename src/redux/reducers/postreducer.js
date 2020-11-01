@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { ADD_POST, EDIT_POST, DELETE_POST } from "./actionTypes";
+import { ADD_POST, EDIT_POST, DELETE_POST } from "../actionTypes";
 
 const initialState = {
     posts: [
@@ -25,7 +25,7 @@ const initialState = {
       },
     ],
   },
-  reducer = (state = initialState, action) => {
+  postReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_POST:
         return {
@@ -64,5 +64,4 @@ const initialState = {
         return state;
     }
   };
-
-export default reducer;
+export default postReducer;

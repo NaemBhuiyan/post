@@ -2,19 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import CreateNewCategoryModal from "./CreateNewCategoryModal";
+import { useDispatch, useSelector } from "react-redux";
 
 const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
+  const catagories = useSelector((state) => state.catagoriesReducer.catagories);
+
   const [title, setTitle] = useState(targetPost?.title || "");
   const [content, setContent] = useState(targetPost?.content || "");
   const [newCatagoriesValue, setNewCatagoriesValue] = useState(
     targetPost?.categories || []
   );
   const [newCatagoriesModal, setNewCatagoriesModal] = useState(false);
-  const [multiSelectOptions, setMultiSelectOptions] = useState([
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ]);
+  const [multiSelectOptions, setMultiSelectOptions] = useState(catagories);
 
   const handleSubmit = (e) => {
     e.preventDefault();

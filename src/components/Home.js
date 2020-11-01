@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../redux";
 import PostForm from "./PostForm";
 import AllPost from "./AllPost";
+
 const Home = () => {
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.postReducer.posts);
+
   const setAddPost = useDispatch();
   const [addPostModal, setAddPostModal] = useState(false);
   const handleDispatch = (id, title, content, categories) => {

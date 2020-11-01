@@ -1,4 +1,4 @@
-import { ADD_POST, EDIT_POST, DELETE_POST } from "./actionTypes";
+import { ADD_POST, EDIT_POST, DELETE_POST, ADD_CATEGORY } from "./actionTypes";
 
 export const addPost = (title, content, categories) => {
   return {
@@ -15,9 +15,16 @@ export const editPost = (props) => {
     ...props,
   };
 };
+
 export const deletePost = (id) => {
   return {
     type: DELETE_POST,
+    id,
+  };
+};
+export const addCatagories = (id) => {
+  return {
+    type: ADD_CATEGORY,
     id,
   };
 };
