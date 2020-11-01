@@ -40,8 +40,6 @@ const CreateNewCategoryModal = ({
 
     setNewLabel("");
     setNewValue("");
-
-    toggle();
   };
   return (
     <Modal isOpen={newCatagoriesModal} toggle={toggle}>
@@ -69,7 +67,12 @@ const CreateNewCategoryModal = ({
         </FormGroup>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={handleSaveClick}>
+        <Button
+          color="primary"
+          onClick={() => {
+            handleSaveClick();
+            toggle();
+          }}>
           Save
         </Button>{" "}
         <Button color="secondary" onClick={toggle}>

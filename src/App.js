@@ -1,21 +1,19 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Container } from "reactstrap";
-import Catagories from "./components/Catagories";
+import AllPost from "./components/AllPost";
+import CreateCategory from "./components/CreateCategory";
 import Home from "./components/Home";
 import TopNav from "./components/Navbar";
-import { useSelector } from "react-redux";
 
 function App() {
-  const posts = useSelector((state) => state.posts);
-
   return (
     <Container className="App">
       <TopNav></TopNav>
 
       <Switch>
-        <Route path="/all-post">
-          <Catagories posts={posts} />
+        <Route path="/categories">
+          <CreateCategory></CreateCategory>
         </Route>
         <Route path="/">
           <Home />

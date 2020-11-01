@@ -4,7 +4,7 @@ import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import { deletePost } from "../redux";
 import EditFormModal from "./EditFormModal";
 
-const Catagories = ({ posts }) => {
+const AllPost = ({ posts }) => {
   const setDeletePost = useDispatch();
   const [modal, setModal] = useState(false);
   const [postId, setPostId] = useState(false);
@@ -23,7 +23,7 @@ const Catagories = ({ posts }) => {
                   <CardHeader className="bg-100">
                     <Row>
                       <Col>
-                        <h3>{title}</h3>
+                        <h4>{title}</h4>
                         <b>Categories</b>:{" "}
                         {categories.map((item, index) => {
                           return (
@@ -70,4 +70,4 @@ const Catagories = ({ posts }) => {
   );
 };
 
-export default Catagories;
+export default AllPost;

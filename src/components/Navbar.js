@@ -29,8 +29,8 @@ const TopNav = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/all-post">
-                All Post
+              <NavLink tag={Link} to="/categories">
+                Categories
               </NavLink>
             </NavItem>
           </Nav>
