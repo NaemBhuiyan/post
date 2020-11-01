@@ -5,7 +5,6 @@ import { addCatagories } from "../redux";
 
 const CreateCategory = () => {
   const catagories = useSelector((state) => {
-    console.log(state.catagoriesReducer.catagories);
     return state.catagoriesReducer.catagories;
   });
   const setCatagories = useDispatch();
@@ -70,6 +69,8 @@ const CreateCategory = () => {
                 setCatagories(
                   addCatagories({ value: newValue, label: newLabel })
                 );
+                setNewLabel("");
+                setNewValue("");
               }}>
               Save
             </Button>

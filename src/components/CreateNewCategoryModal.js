@@ -9,7 +9,8 @@ import {
   Label,
   Input,
 } from "reactstrap";
-
+import { useSelector, useDispatch } from "react-redux";
+import { addCatagories } from "../redux";
 const CreateNewCategoryModal = ({
   newCatagoriesModal,
   setNewCatagoriesModal,
@@ -19,6 +20,7 @@ const CreateNewCategoryModal = ({
   const toggle = () => setNewCatagoriesModal(!newCatagoriesModal);
   const [newLabel, setNewLabel] = useState("");
   const [newValue, setNewValue] = useState("");
+  const setCatagories = useDispatch();
 
   const handleSaveClick = () => {
     if (Array.isArray(newCatagoriesValue)) {
@@ -37,6 +39,8 @@ const CreateNewCategoryModal = ({
         },
       ]);
     }
+
+    setCatagories(addCatagories({ value: newValue, label: newLabel }));
 
     setNewLabel("");
     setNewValue("");
