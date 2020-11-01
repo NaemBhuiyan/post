@@ -28,7 +28,6 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
       const isDuplicate = multiSelectOptions.every((item) =>
         newCatagoriesValue.some((v) => v.value !== item.value)
       );
-      console.log(isDuplicate);
       isDuplicate &&
         setMultiSelectOptions((prev) => [...prev, ...newCatagoriesValue]);
     }
