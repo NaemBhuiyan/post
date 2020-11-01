@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import CreatableSelect from "react-select/creatable";
 import CreateNewCategoryModal from "./CreateNewCategoryModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
   const catagories = useSelector((state) => state.catagoriesReducer.catagories);
@@ -28,6 +28,7 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
       const isDuplicate = multiSelectOptions.every((item) =>
         newCatagoriesValue.some((v) => v.value !== item.value)
       );
+      console.log(isDuplicate);
       isDuplicate &&
         setMultiSelectOptions((prev) => [...prev, ...newCatagoriesValue]);
     }

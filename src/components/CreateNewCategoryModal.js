@@ -9,7 +9,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCatagories } from "../redux";
 const CreateNewCategoryModal = ({
   newCatagoriesModal,

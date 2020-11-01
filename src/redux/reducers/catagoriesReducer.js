@@ -7,10 +7,8 @@ const s = {
   ],
 };
 const catagoriesReducer = (state = s, action) => {
-  console.log(state.catagories);
   switch (action.type) {
     case ADD_CATEGORY:
-      console.log(action.id);
       return { catagories: [...state.catagories, action.id] };
 
     default:

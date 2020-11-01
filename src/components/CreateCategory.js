@@ -1,40 +1,12 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Row, Col, Button } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCatagories } from "../redux";
 
 const CreateCategory = () => {
-  const catagories = useSelector((state) => {
-    return state.catagoriesReducer.catagories;
-  });
   const setCatagories = useDispatch();
   const [newLabel, setNewLabel] = useState("");
   const [newValue, setNewValue] = useState("");
-
-  // console.log(catagories);
-  // const handleSaveClick = () => {
-  //   if (Array.isArray(newCatagoriesValue)) {
-  //     setNewCatagoriesValue([
-  //       ...newCatagoriesValue,
-  //       {
-  //         value: newValue,
-  //         label: newLabel,
-  //       },
-  //     ]);
-  //   } else {
-  //     setNewCatagoriesValue([
-  //       {
-  //         value: newValue,
-  //         label: newLabel,
-  //       },
-  //     ]);
-  //   }
-
-  //   setNewLabel("");
-  //   setNewValue("");
-
-  //   toggle();
-  // };
 
   return (
     <>
