@@ -15,6 +15,8 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
   const [newCatagoriesModal, setNewCatagoriesModal] = useState(false);
   const [multiSelectOptions, setMultiSelectOptions] = useState(catagories);
 
+  const [onCreateInputValue, setOnCreateInputValue] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleDispatch(targetPost?.id, title, content, newCatagoriesValue);
@@ -62,7 +64,9 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
           <Label>Categories</Label>
           <CreatableSelect
             isClearable
-            onCreateOption={() => {
+            onCreateOption={(inputValue) => {
+              setOnCreateInputValue(inputValue);
+              setNewCatagoriesValue(inputValue);
               setNewCatagoriesModal(true);
             }}
             value={newCatagoriesValue}
@@ -90,6 +94,7 @@ const PostForm = ({ handleDispatch, targetPost, btnText, toggle }) => {
         setNewCatagoriesModal={setNewCatagoriesModal}
         setNewCatagoriesValue={setNewCatagoriesValue}
         newCatagoriesValue={newCatagoriesValue}
+        onCreateInputValue={onCreateInputValue}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Modal,
@@ -16,12 +16,16 @@ const CreateNewCategoryModal = ({
   setNewCatagoriesModal,
   setNewCatagoriesValue,
   newCatagoriesValue,
+  onCreateInputValue,
 }) => {
   const toggle = () => setNewCatagoriesModal(!newCatagoriesModal);
   const [newLabel, setNewLabel] = useState("");
   const [newValue, setNewValue] = useState("");
   const setCatagories = useDispatch();
-
+  useEffect(() => {
+    setNewLabel(onCreateInputValue);
+  }, [onCreateInputValue]);
+  console.log(onCreateInputValue);
   const handleSaveClick = () => {
     if (Array.isArray(newCatagoriesValue)) {
       setNewCatagoriesValue([
