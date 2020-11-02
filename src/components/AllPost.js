@@ -28,7 +28,7 @@ const AllPost = ({ posts }) => {
                         {categories.map((item, index) => {
                           return (
                             <span key={index} className="mr-2 text-primary">
-                              #{item.value}
+                              #{item.label}
                             </span>
                           );
                         })}
